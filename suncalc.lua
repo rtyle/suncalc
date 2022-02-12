@@ -153,8 +153,8 @@ end
 -- calculates sun times for a given date, latitude/longitude, and, optionally,
 -- the observer height (in meters) relative to the horizon
 
-SunCalc.getTimes = function (date, lat, lng, height)
-
+SunCalc.getTimes = function (date, lat, lng, height, times)
+    times = times or SunCalc.times
     height = height or 0
 
     local lw = rad * -lng
@@ -180,7 +180,7 @@ SunCalc.getTimes = function (date, lat, lng, height)
         nadir = fromJulian(Jnoon - 0.5)
     }
 
-    for _, time in ipairs(SunCalc.times) do
+    for _, time in ipairs(times) do
 
         h0 = (time[01] + dh) * rad
 
